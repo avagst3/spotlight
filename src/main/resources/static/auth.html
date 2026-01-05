@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auth Test</title>
+</head>
+<body>
+<h2>Register</h2>
+<form id="registerForm">
+    <input type="text" placeholder="Name" id="r_name"><br>
+    <input type="email" placeholder="Email" id="r_email"><br>
+    <input type="password" placeholder="Password" id="r_password"><br>
+    <input type="text" placeholder="Profile Picture URL" id="r_pic"><br>
+    <button type="submit">Register</button>
+</form>
+
+<h2>Login</h2>
+<form id="loginForm">
+    <input type="email" placeholder="Email" id="l_email"><br>
+    <input type="password" placeholder="Password" id="l_password"><br>
+    <button type="submit">Login</button>
+</form>
+
+<script>
+document.getElementById("registerForm").onsubmit = async (e) => {
+    e.preventDefault();
+    const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            name: r_name.value,
+            email: r_email.value,
+            password: r_password.value,
+            profilePictureUrl: r_pic.value
+        })
+    });
+    alert(await res.text());
+};
+
+document.getElementById("loginForm").onsubmit = async (e) => {
+    e.preventDefault();
+    const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            email: l_email.value,
+            password: l_password.value
+        })
+    });
+    alert(await res.text());
+};
+</script>
+</body>
+</html>
