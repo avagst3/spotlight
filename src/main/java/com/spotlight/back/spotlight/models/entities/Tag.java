@@ -1,14 +1,24 @@
 package com.spotlight.back.spotlight.models.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
 import java.util.UUID;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "tags")
-public class Tag {
+@EqualsAndHashCode(callSuper = true)
+public class Tag extends AuditDateEntity {
     
     @Id
-    private UUID id = UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     
     @Column(nullable = false)
     private String label;
@@ -20,41 +30,18 @@ public class Tag {
     private Double yCoordinate;
     
     @Column(nullable = false)
+    @Builder.Default
     private Integer fontSize = 12;
     
     @Column(nullable = false)
+    @Builder.Default
     private String fontColor = "#000000";
     
     @Column(nullable = false)
+    @Builder.Default
     private String backgroundColor = "#FFFFFF";
-    
-    public Tag() {}
-    
-    public Tag(String label, Double xCoordinate, Double yCoordinate) {
-        this.id = UUID.randomUUID();
-        this.label = label;
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
-    }
-    
-    public UUID getId() { return id; }
-    public void setId(UUID id) { this.id = id; }
-    
-    public String getLabel() { return label; }
-    public void setLabel(String label) { this.label = label; }
-    
-    public Double getXCoordinate() { return xCoordinate; }
-    public void setXCoordinate(Double xCoordinate) { this.xCoordinate = xCoordinate; }
-    
-    public Double getYCoordinate() { return yCoordinate; }
-    public void setYCoordinate(Double yCoordinate) { this.yCoordinate = yCoordinate; }
-    
-    public Integer getFontSize() { return fontSize; }
-    public void setFontSize(Integer fontSize) { this.fontSize = fontSize; }
-    
-    public String getFontColor() { return fontColor; }
-    public void setFontColor(String fontColor) { this.fontColor = fontColor; }
-    
-    public String getBackgroundColor() { return backgroundColor; }
-    public void setBackgroundColor(String backgroundColor) { this.backgroundColor = backgroundColor; }
+
+    @OneToMany(mappedBy = "tag",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<TagProject> projects;
+
 }

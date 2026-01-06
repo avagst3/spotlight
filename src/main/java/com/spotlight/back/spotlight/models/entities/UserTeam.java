@@ -1,14 +1,25 @@
 package com.spotlight.back.spotlight.models.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.util.UUID;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
-@Table(name = "user_teams")
-public class UserTeam {
+@Table(name = "user_teams",uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"user_id", "team_id"})
+})
+@EqualsAndHashCode(callSuper = true)
+public class UserTeam extends AuditDateEntity {
     
     @Id
-    private UUID id = UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -20,30 +31,11 @@ public class UserTeam {
     
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @Builder.Default
     private UserRole role = UserRole.MEMBER;
     
     public enum UserRole {
-        OWNER, ADMIN, MEMBER, VIEWER
+        OWNER, ADMIN, MEMBER,VIEWER
     }
-    
-    public UserTeam() {}
-    
-    public UserTeam(User user, Team team, UserRole role) {
-        this.id = UUID.randomUUID();
-        this.user = user;
-        this.team = team;
-        this.role = role;
-    }
-    
-    public UUID getId() { return id; }
-    public void setId(UUID id) { this.id = id; }
-    
-    public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
-    
-    public Team getTeam() { return team; }
-    public void setTeam(Team team) { this.team = team; }
-    
-    public UserRole getRole() { return role; }
-    public void setRole(UserRole role) { this.role = role; }
+
 }

@@ -1,53 +1,34 @@
 package com.spotlight.back.spotlight.models.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
 import java.util.UUID;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "users")
-public class User {
+@EqualsAndHashCode(callSuper = true)
+public class User extends AuditDateEntity {
 
     @Id
-    private UUID id = UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-
     @Column(nullable = false)
-    private String passwordHash;
+    private String password;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<UserTeam> userTeams;
 
     private String profilePictureUrl;
 
-    public User() {}
-
-    public User(String name, String email, String passwordHash, String profilePictureUrl) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.email = email;
-        this.passwordHash = passwordHash;
-        this.profilePictureUrl = profilePictureUrl;
-    }
-
-    public UUID getId() { return id; }
-
-    public void setId(UUID id) { this.id = id; }
-
-    public String getName() { return name; }
-
-    public void setName(String name) { this.name = name; }
-
-    public String getEmail() { return email; }
-
-    public void setEmail(String email) { this.email = email; }
-
-    public String getPasswordHash() { return passwordHash; }
-
-    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
-
-    public String getProfilePictureUrl() { return profilePictureUrl; }
-
-    public void setProfilePictureUrl(String profilePictureUrl) { this.profilePictureUrl = profilePictureUrl; }
 }

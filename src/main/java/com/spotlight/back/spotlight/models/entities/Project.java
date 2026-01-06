@@ -1,59 +1,43 @@
 package com.spotlight.back.spotlight.models.entities;
 
 import jakarta.persistence.*;
-import java.util.UUID;
+import lombok.*;
 
+import java.util.List;
+import java.util.UUID;
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "projects")
-public class Project {
+@EqualsAndHashCode(callSuper = true)
+public class Project extends AuditDateEntity {
     
     @Id
-    private UUID id = UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     
-    @Column(nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
     
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "description",columnDefinition = "TEXT", nullable = false)
     private String description;
     
+    @Column(name = "source_video_path")
     private String sourceVideoPath;
+    
+    @Column(name = "source_data_path")
     private String sourceDataPath;
+    
+    @Column(name = "processed_video_path")
     private String processedVideoPath;
     
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private ProcessingStatus status = ProcessingStatus.PENDING;
-    
-    public enum ProcessingStatus {
-        PENDING, PROCESSING, COMPLETED, FAILED
-    }
-    
-    public Project() {}
-    
-    public Project(String name, String description) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.description = description;
-    }
+    @OneToMany(mappedBy = "project",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<TeamProject> teams;
 
-    public UUID getId() { return id; }
-    public void setId(UUID id) { this.id = id; }
-    
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-    
-    public String getSourceVideoPath() { return sourceVideoPath; }
-    public void setSourceVideoPath(String sourceVideoPath) { this.sourceVideoPath = sourceVideoPath; }
-    
-    public String getSourceDataPath() { return sourceDataPath; }
-    public void setSourceDataPath(String sourceDataPath) { this.sourceDataPath = sourceDataPath; }
-    
-    public String getProcessedVideoPath() { return processedVideoPath; }
-    public void setProcessedVideoPath(String processedVideoPath) { this.processedVideoPath = processedVideoPath; }
-    
-    public ProcessingStatus getStatus() { return status; }
-    public void setStatus(ProcessingStatus status) { this.status = status; }
+    @OneToMany(mappedBy = "project",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<TagProject> tags;
+
 }

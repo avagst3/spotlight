@@ -1,14 +1,23 @@
 package com.spotlight.back.spotlight.models.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.util.UUID;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "team_projects")
-public class TeamProject {
+@EqualsAndHashCode(callSuper = true)
+public class TeamProject extends AuditDateEntity {
     
     @Id
-    private UUID id = UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     
     @ManyToOne
     @JoinColumn(name = "team_id", nullable = false)
@@ -17,21 +26,5 @@ public class TeamProject {
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
-    
-    public TeamProject() {}
-    
-    public TeamProject(Team team, Project project) {
-        this.id = UUID.randomUUID();
-        this.team = team;
-        this.project = project;
-    }
-    
-    public UUID getId() { return id; }
-    public void setId(UUID id) { this.id = id; }
-    
-    public Team getTeam() { return team; }
-    public void setTeam(Team team) { this.team = team; }
-    
-    public Project getProject() { return project; }
-    public void setProject(Project project) { this.project = project; }
+
 }

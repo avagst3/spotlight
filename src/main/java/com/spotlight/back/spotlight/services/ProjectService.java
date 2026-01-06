@@ -1,82 +1,84 @@
 package com.spotlight.back.spotlight.services;
 
+import com.spotlight.back.spotlight.models.converters.ProjectConverter;
 import com.spotlight.back.spotlight.models.dtos.ProjectDto;
+import com.spotlight.back.spotlight.models.dtos.ProjectResponceDto;
 import com.spotlight.back.spotlight.models.entities.Project;
 import com.spotlight.back.spotlight.repositories.ProjectRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class ProjectService {
     
     private final ProjectRepository projectRepository;
-    private final Path videoStoragePath = Paths.get("uploads/videos");
-    private final Path dataStoragePath = Paths.get("uploads/data");
+    private final ProjectConverter projectConverter;
+    private final FileUploadService fileUploadService;
     
-    public ProjectService(ProjectRepository projectRepository) throws IOException {
-        this.projectRepository = projectRepository;
-        Files.createDirectories(videoStoragePath);
-        Files.createDirectories(dataStoragePath);
+    @Transactional
+    public ProjectResponceDto createProject(ProjectDto dto) {
+        Project project = Project.builder()
+                .name(dto.name)
+                .description(dto.description)
+                .build();
+        return projectConverter.convert(projectRepository.save(project));
     }
     
-    public Project createProject(ProjectDto dto) {
-        Project project = new Project(dto.name, dto.description);
-        return projectRepository.save(project);
+    @Transactional(readOnly = true)
+    public List<ProjectResponceDto> getAllProjects() {
+        return  projectRepository.findAll().stream()
+            .map(projectConverter::convert)
+            .toList();
     }
     
-    public List<Project> getAllProjects() {
-        return projectRepository.findAll();
+    @Transactional(readOnly = true)
+    public ProjectResponceDto getProjectById(UUID id) {
+        return projectConverter.convert(projectRepository.findById(id).get());
     }
     
-    public Project getProjectById(UUID id) {
-        return projectRepository.findById(id).orElse(null);
-    }
-    
-    public Project updateProject(UUID id, ProjectDto dto) {
-        Project project = projectRepository.findById(id).orElse(null);
-        if (project == null) return null;
+    @Transactional
+    public ProjectResponceDto updateProject(UUID id, ProjectDto dto) {
+        Project project = projectRepository.findById(id).get();
         
         project.setName(dto.name);
         project.setDescription(dto.description);
         
-        return projectRepository.save(project);
+        return projectConverter.convert(projectRepository.save(project));
     }
     
-    public Project updateProjectVideo(UUID projectId, MultipartFile videoFile) throws IOException {
-        Project project = projectRepository.findById(projectId).orElse(null);
-        if (project == null) return null;
+    @Transactional
+    public ProjectResponceDto updateProjectVideo(UUID id, MultipartFile file) {
+        Project project = projectRepository.findById(id).get();
         
-        String fileName = projectId.toString() + "_" + System.currentTimeMillis() + 
-                         getFileExtension(videoFile.getOriginalFilename());
-        Path filePath = videoStoragePath.resolve(fileName);
+        String path = fileUploadService.uploadFile(file,"project/raw");
         
-        // Save file
-        Files.copy(videoFile.getInputStream(), filePath);
+        project.setSourceVideoPath(path);
         
-        project.setSourceVideoPath(filePath.toString());
-        return projectRepository.save(project);
+        return projectConverter.convert(projectRepository.save(project));
     }
-    
-    public Project updateProjectData(UUID projectId, MultipartFile dataFile) throws IOException {
-        Project project = projectRepository.findById(projectId).orElse(null);
-        if (project == null) return null;
+
+    @Transactional
+    public ProjectResponceDto updateProjectData(UUID id, MultipartFile file) {
+        Project project = projectRepository.findById(id).get();
         
-        String fileName = projectId.toString() + "_" + System.currentTimeMillis() + ".csv";
-        Path filePath = dataStoragePath.resolve(fileName);
+        String path = fileUploadService.uploadFile(file,"project/data");
         
-        Files.copy(dataFile.getInputStream(), filePath);
+        project.setSourceDataPath(path);
         
-        project.setSourceDataPath(filePath.toString());
-        return projectRepository.save(project);
+        return projectConverter.convert(projectRepository.save(project));
     }
-    
+
+    @Transactional
     public boolean deleteProject(UUID id) {
         if (projectRepository.existsById(id)) {
             projectRepository.deleteById(id);
@@ -85,9 +87,4 @@ public class ProjectService {
         return false;
     }
     
-    private String getFileExtension(String filename) {
-        if (filename == null) return "";
-        int lastDot = filename.lastIndexOf('.');
-        return lastDot == -1 ? "" : filename.substring(lastDot);
-    }
 }
