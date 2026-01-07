@@ -25,18 +25,23 @@ public class UserService {
     private final UserRepository userRepository;
     private final FileUploadService fileUploadService;
     private final UserConverter userConverter;
+    private final com.spotlight.back.spotlight.managers.JwtManager jwtManager;
 
     @Transactional
     public UserResponceDto register(UserRegisterDto dto) {
         String hashed = BCrypt.hashpw(dto.password, BCrypt.gensalt());
 
         User user = User.builder()
-                .name(dto.name)
+                .name(dto.username)
+                .username(dto.username)
                 .password(hashed)
                 .profilePictureUrl("")
                 .build();
-
-        return userConverter.convert(userRepository.save(user));
+        
+        user = userRepository.save(user); // Save first to get ID
+        UserResponceDto response = userConverter.convert(user);
+        response.setToken(jwtManager.generateToken(user));
+        return response;
     }
 
     @Transactional
@@ -50,10 +55,17 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public UserResponceDto login(UserLoginDto dto) {
-        return userRepository.findByUsername(dto.username)
+        User user = userRepository.findByUsername(dto.username)
                 .filter(u -> BCrypt.checkpw(dto.password, u.getPassword()))
-                .map(userConverter::convert)
                 .orElse(null);
+
+        if (user == null) {
+            return null;
+        }
+
+        UserResponceDto response = userConverter.convert(user);
+        response.setToken(jwtManager.generateToken(user));
+        return response;
     }
 
     @Transactional(readOnly = true)

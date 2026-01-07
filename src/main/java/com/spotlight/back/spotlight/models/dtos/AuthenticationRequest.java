@@ -10,9 +10,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRegisterDto {
+public class AuthenticationRequest {
+
     @NotEmpty
-    public String username;
+    private String username;
+
     @NotEmpty
-    public String password;
+    private String password;
+
 }

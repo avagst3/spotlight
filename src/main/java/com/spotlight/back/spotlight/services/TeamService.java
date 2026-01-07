@@ -56,6 +56,15 @@ public class TeamService {
         return teamConverter.convert(teamRepository.save(team));
     }
     
+    private final com.spotlight.back.spotlight.services.FileUploadService fileUploadService;
+
+    public TeamResponceDto updateTeamProfilePicture(UUID id, org.springframework.web.multipart.MultipartFile file) {
+        Team team = teamRepository.findById(id).orElseThrow(() -> new NotFoundException(TeamError.TEAM_NOT_FOUND, id));
+        String filename = fileUploadService.uploadFile(file, "team");
+        team.setProfilePictureUrl(filename);
+        return teamConverter.convert(teamRepository.save(team));
+    }
+
     public boolean deleteTeam(UUID id) {
         if (teamRepository.existsById(id)) {
             teamRepository.deleteById(id);

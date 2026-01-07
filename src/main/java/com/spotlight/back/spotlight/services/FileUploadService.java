@@ -1,5 +1,7 @@
 package com.spotlight.back.spotlight.services;
 
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -7,6 +9,7 @@ import com.spotlight.back.spotlight.exceptions.BadRequestException;
 import com.spotlight.back.spotlight.exceptions.InternalServerException;
 import com.spotlight.back.spotlight.exceptions.errors.FileUploadError;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -18,17 +21,24 @@ import java.util.UUID;
 
 @Slf4j
 @Service
-public class FileUploadService {
+public class FileUploadService implements InitializingBean{
     
-    private final Path uploadPath = Paths.get("uploads");
+    private final String basePath; 
+    private Path rootLocation;
 
-    public FileUploadService() {
+    public FileUploadService(@Value("${FILE_STORAGE_PATH:./uploads}") String basePath) {
+        this.basePath = basePath;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
         try {
-            Files.createDirectories(uploadPath.resolve("user"));
-            Files.createDirectories(uploadPath.resolve("team"));
-            Files.createDirectories(uploadPath.resolve("project/raw"));
-            Files.createDirectories(uploadPath.resolve("project/data"));
-            Files.createDirectories(uploadPath.resolve("project/video"));
+            this.rootLocation = Paths.get(basePath);
+            Files.createDirectories(rootLocation.resolve("user"));
+            Files.createDirectories(rootLocation.resolve("team"));
+            Files.createDirectories(rootLocation.resolve("project/raw"));
+            Files.createDirectories(rootLocation.resolve("project/data"));
+            Files.createDirectories(rootLocation.resolve("project/video"));
         } catch (IOException e) {
             throw new RuntimeException("Failed to create upload directory", e);
         }
@@ -40,7 +50,7 @@ public class FileUploadService {
         }
         try {
             String filename = UUID.randomUUID().toString() + getFileExtension(file.getOriginalFilename());
-            Path filePath = uploadPath.resolve(subDirectory);
+            Path filePath = rootLocation.resolve(subDirectory);
             if (!Files.exists(filePath)) {
                 Files.createDirectories(filePath);
             }
@@ -51,7 +61,7 @@ public class FileUploadService {
                 Files.copy(inputStream, destination);
             }
 
-            return filename;
+            return subDirectory + "/" + filename;
         } catch (Exception e) {
             throw new InternalServerException(FileUploadError.UPLOAD_FAILED, e);
         }

@@ -1,9 +1,74 @@
 services:
-  postgres:
-    image: 'postgres:latest'
+  spotlight:
+    container_name: spotlight-database
+    image: 'postgres:16.4'
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      - 'POSTGRES_DB=spotlightdb'
+      - 'POSTGRES_PASSWORD=spotlight'
+      - 'POSTGRES_USER=spotlight'
     ports:
-      - '5432'
+      - '5432:5432'
+    volumes:
+      - 'spotlight-db-data:/var/lib/postgresql/data'
+    # FIX A: Add the DB to the custom network
+    networks:
+      - spotlight-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U spotlight -d spotlightdb"]
+      interval: 5s
+      retries: 5
+
+  spotlight-front:
+    build: ../spotlight_front
+    ports:
+      - '5173:5173'
+    volumes:
+      - ../spotlight_front:/app
+      - /app/node_modules
+      - shared-upload:/app/public/uploads:ro
+    networks:
+      - spotlight-network
+    environment:
+      - VITE_API_URL=http://localhost:8080
+  app-java:
+    build: .
+    ports:
+      - '8080:8080'
+    environment:
+      
+      - JWT_ISSUER=spotlight
+      - JWT_ALGORITHM=EC
+      - JWT_VALIDITY=3600000
+      - JWT_PRIVATE_KEY=MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgn4xc890lO65nupUgy4miHN1I6AvjtskAtcNchmRGssOhRANCAARYQs3T7R6/uG8/vCQGoeR3yTKIm9S4E2mTgjNgBbBcWU+1d8XlHo290ALWMsmbXkNFfz8kBfjDj4XRewXnp1PB
+      - JWT_PUBLIC_KEY=MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEWELN0+0ev7hvP7wkBqHkd8kyiJvUuBNpk4IzYAWwXFlPtXfF5R6NvdAC1jLJm15DRX8/JAX4w4+F0XsF56dTwQ==
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://spotlight:5432/spotlightdb'
+      - 'SPRING_DATASOURCE_USERNAME=spotlight'
+      - 'SPRING_DATASOURCE_PASSWORD=spotlight'
+      - 'SPRING_JPA_HIBERNATE_DDL_AUTO=update'
+      - PYTHON_API_URL=http://app-python:8000
+      - FILE_STORAGE_PATH=/shared/data
+      - SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE=10000MB
+      - SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE=10000MB
+    volumes:
+      - shared-upload:/shared/data
+    networks:
+      - spotlight-network
+    depends_on:
+      spotlight:
+        condition: service_healthy
+
+  app-python:
+    build: ./video_backend
+    ports:
+      - '8000:8000'
+    volumes:
+      - shared-upload:/shared/data
+    networks:
+      - spotlight-network
+
+volumes:
+  spotlight-db-data:
+  shared-upload:
+
+networks:
+  spotlight-network:

@@ -1,0 +1,634 @@
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/C:/Users/lache/.m2/wrapper/dists/apache-maven-3.9.11/03d7e36a140982eea48e22c1dcac01d8862b2550b2939e09a0809bbc5182a5bc/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.example:user-api >------------------------
+[INFO] Building user-api 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ user-api ---
+[INFO] Deleting E:\dev\spotlight\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ user-api ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ user-api ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 69 source files with javac [debug release 17] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagService.java:[28,22] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagService.java:[57,12] cannot find symbol
+  symbol:   method setLabel(java.lang.String)
+  location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagService.java:[58,12] cannot find symbol
+  symbol:   method setXCoordinate(java.lang.Double)
+  location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagService.java:[59,12] cannot find symbol
+  symbol:   method setYCoordinate(java.lang.Double)
+  location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagService.java:[60,38] cannot find symbol
+  symbol:   method setFontSize(java.lang.Integer)
+  location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagService.java:[61,39] cannot find symbol
+  symbol:   method setFontColor(java.lang.String)
+  location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagService.java:[62,45] cannot find symbol
+  symbol:   method setBackgroundColor(java.lang.String)
+  location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[18,15] cannot find symbol
+  symbol:   class TagDtoBuilder
+  location: class com.spotlight.back.spotlight.models.dtos.TagDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[18,46] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.dtos.TagDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[19,24] cannot find symbol
+  symbol:   method getId()
+  location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[20,27] cannot find symbol
+  symbol:   method getLabel()
+  location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[21,33] cannot find symbol
+  symbol:   method getXCoordinate()
+  location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[22,33] cannot find symbol
+  symbol:   method getYCoordinate()
+  location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[23,30] cannot find symbol
+  symbol:   method getFontSize()
+  location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[24,31] cannot find symbol
+  symbol:   method getFontColor()
+  location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[25,37] cannot find symbol
+  symbol:   method getBackgroundColor()
+  location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/FileUploadError.java:[10,8] com.spotlight.back.spotlight.exceptions.errors.FileUploadError is not abstract and does not override abstract method getDescription() in com.spotlight.back.spotlight.exceptions.errors.ErrorCode
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/FileUploadError.java:[12,18] constructor FileUploadError in enum com.spotlight.back.spotlight.exceptions.errors.FileUploadError cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/FileUploadError.java:[13,15] constructor FileUploadError in enum com.spotlight.back.spotlight.exceptions.errors.FileUploadError cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/FileUploadError.java:[14,14] constructor FileUploadError in enum com.spotlight.back.spotlight.exceptions.errors.FileUploadError cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[35,43] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[36,40] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[37,30] cannot find symbol
+  symbol:   method getLabel()
+  location: variable tagDto of type com.spotlight.back.spotlight.models.dtos.TagCreationDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[38,34] cannot find symbol
+  symbol:   method getFontColor()
+  location: variable tagDto of type com.spotlight.back.spotlight.models.dtos.TagCreationDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[39,40] cannot find symbol
+  symbol:   method getBackgroundColor()
+  location: variable tagDto of type com.spotlight.back.spotlight.models.dtos.TagCreationDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[40,36] cannot find symbol
+  symbol:   method getXCoordinate()
+  location: variable tagDto of type com.spotlight.back.spotlight.models.dtos.TagCreationDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[41,36] cannot find symbol
+  symbol:   method getYCoordinate()
+  location: variable tagDto of type com.spotlight.back.spotlight.models.dtos.TagCreationDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[43,55] cannot find symbol
+  symbol:   method getProjectId()
+  location: variable tagDto of type com.spotlight.back.spotlight.models.dtos.TagCreationDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[43,150] cannot find symbol
+  symbol:   method getProjectId()
+  location: variable tagDto of type com.spotlight.back.spotlight.models.dtos.TagCreationDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[56,38] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.dtos.TagDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[57,31] cannot find symbol
+  symbol:   method getTag()
+  location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[58,34] cannot find symbol
+  symbol:   method getTag()
+  location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[59,38] cannot find symbol
+  symbol:   method getTag()
+  location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[60,44] cannot find symbol
+  symbol:   method getTag()
+  location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[61,40] cannot find symbol
+  symbol:   method getTag()
+  location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[62,40] cannot find symbol
+  symbol:   method getTag()
+  location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[64,20] incompatible types: java.util.List<java.lang.Object> cannot be converted to java.util.List<com.spotlight.back.spotlight.models.dtos.TagDto>
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagInProjectConverter.java:[16,22] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.dtos.TagDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagInProjectConverter.java:[17,31] cannot find symbol
+  symbol:   method getTag()
+  location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagInProjectConverter.java:[18,34] cannot find symbol
+  symbol:   method getTag()
+  location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/UserService.java:[33,25] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/UserService.java:[47,13] cannot find symbol
+  symbol:   method setProfilePictureUrl(java.lang.String)
+  location: variable user of type com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/UserService.java:[54,60] cannot find symbol
+  symbol:   method getPassword()
+  location: variable u of type com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserConverter.java:[27,24] cannot find symbol
+  symbol:   class UserResponceDtoBuilder
+  location: class com.spotlight.back.spotlight.models.dtos.UserResponceDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserConverter.java:[27,73] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.dtos.UserResponceDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserConverter.java:[28,25] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserConverter.java:[29,27] cannot find symbol
+  symbol:   method getName()
+  location: variable user of type com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserConverter.java:[30,40] cannot find symbol
+  symbol:   method getProfilePictureUrl()
+  location: variable user of type com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserConverter.java:[32,17] cannot find symbol
+  symbol:   method getUserTeams()
+  location: variable user of type com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserConverter.java:[33,49] cannot find symbol
+  symbol:   method getUserTeams()
+  location: variable user of type com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamsOfUserConverter.java:[21,30] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.dtos.TeamForUserDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamsOfUserConverter.java:[22,29] cannot find symbol
+  symbol:   method getTeam()
+  location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamsOfUserConverter.java:[23,31] cannot find symbol
+  symbol:   method getTeam()
+  location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamsOfUserConverter.java:[24,38] cannot find symbol
+  symbol:   method getTeam()
+  location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamsOfUserConverter.java:[25,44] cannot find symbol
+  symbol:   method getTeam()
+  location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamsOfUserConverter.java:[26,31] cannot find symbol
+  symbol:   method getRole()
+  location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamsOfUserConverter.java:[27,35] cannot find symbol
+  symbol:   method getTeam()
+  location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamProjectConverter.java:[16,32] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.dtos.ProjectInTeamDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamProjectConverter.java:[17,32] cannot find symbol
+  symbol:   method getProject()
+  location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamProjectConverter.java:[18,34] cannot find symbol
+  symbol:   method getProject()
+  location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamProjectConverter.java:[19,41] cannot find symbol
+  symbol:   method getProject()
+  location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[18,27] cannot find symbol
+  symbol:   class ProjectResponceDtoBuilder
+  location: class com.spotlight.back.spotlight.models.dtos.ProjectResponceDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[18,82] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.dtos.ProjectResponceDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[19,28] cannot find symbol
+  symbol:   method getId()
+  location: variable project of type com.spotlight.back.spotlight.models.entities.Project
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[20,30] cannot find symbol
+  symbol:   method getName()
+  location: variable project of type com.spotlight.back.spotlight.models.entities.Project
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[21,37] cannot find symbol
+  symbol:   method getDescription()
+  location: variable project of type com.spotlight.back.spotlight.models.entities.Project
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[22,41] cannot find symbol
+  symbol:   method getSourceVideoPath()
+  location: variable project of type com.spotlight.back.spotlight.models.entities.Project
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[23,40] cannot find symbol
+  symbol:   method getSourceDataPath()
+  location: variable project of type com.spotlight.back.spotlight.models.entities.Project
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[24,44] cannot find symbol
+  symbol:   method getProcessedVideoPath()
+  location: variable project of type com.spotlight.back.spotlight.models.entities.Project
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/ProjectError.java:[9,8] com.spotlight.back.spotlight.exceptions.errors.ProjectError is not abstract and does not override abstract method getDescription() in com.spotlight.back.spotlight.exceptions.errors.ErrorCode
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/ProjectError.java:[10,22] constructor ProjectError in enum com.spotlight.back.spotlight.exceptions.errors.ProjectError cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/TeamError.java:[10,8] com.spotlight.back.spotlight.exceptions.errors.TeamError is not abstract and does not override abstract method getDescription() in com.spotlight.back.spotlight.exceptions.errors.ErrorCode
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/TeamError.java:[11,19] constructor TeamError in enum com.spotlight.back.spotlight.exceptions.errors.TeamError cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserInTeamConverter.java:[16,29] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.dtos.UserInTeamDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserInTeamConverter.java:[17,29] cannot find symbol
+  symbol:   method getId()
+  location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserInTeamConverter.java:[18,31] cannot find symbol
+  symbol:   method getUser()
+  location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserInTeamConverter.java:[19,44] cannot find symbol
+  symbol:   method getUser()
+  location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserInTeamConverter.java:[20,31] cannot find symbol
+  symbol:   method getRole()
+  location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TeamService.java:[31,25] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TeamService.java:[53,13] cannot find symbol
+  symbol:   method setName(java.lang.String)
+  location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TeamService.java:[54,13] cannot find symbol
+  symbol:   method setDescription(java.lang.String)
+  location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[26,24] cannot find symbol
+  symbol:   class TeamResponceDtoBuilder
+  location: class com.spotlight.back.spotlight.models.dtos.TeamResponceDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[26,73] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.dtos.TeamResponceDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[27,25] cannot find symbol
+  symbol:   method getId()
+  location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[28,27] cannot find symbol
+  symbol:   method getName()
+  location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[29,34] cannot find symbol
+  symbol:   method getDescription()
+  location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[31,17] cannot find symbol
+  symbol:   method getProfilePictureUrl()
+  location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[32,43] cannot find symbol
+  symbol:   method getProfilePictureUrl()
+  location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[34,17] cannot find symbol
+  symbol:   method getUsers()
+  location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[35,31] cannot find symbol
+  symbol:   method getUsers()
+  location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[37,17] cannot find symbol
+  symbol:   method getProjects()
+  location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[38,34] cannot find symbol
+  symbol:   method getProjects()
+  location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectInTeamConverter.java:[20,25] cannot find symbol
+  symbol:   class ProjectInTeamDtoBuilder
+  location: class com.spotlight.back.spotlight.models.dtos.ProjectInTeamDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectInTeamConverter.java:[20,76] cannot find symbol
+  symbol:   method builder()
+  location: class com.spotlight.back.spotlight.models.dtos.ProjectInTeamDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectInTeamConverter.java:[21,32] cannot find symbol
+  symbol:   method getId()
+  location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectInTeamConverter.java:[22,34] cannot find symbol
+  symbol:   method getProject()
+  location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectInTeamConverter.java:[23,41] cannot find symbol
+  symbol:   method getProject()
+  location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TeamProjectService.java:[34,56] cannot find symbol
+  symbol:   method getTeam()
+  location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TeamProjectService.java:[35,65] cannot find symbol
+  symbol:   method getProject()
+  location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TeamProjectService.java:[36,20] cannot find symbol
+  symbol:   method setTeam(com.spotlight.back.spotlight.models.entities.Team)
+  location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[INFO] 100 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.162 s
+[INFO] Finished at: 2026-01-07T12:36:14+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project user-api: Compilation failure: Compilation failure: 
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagService.java:[28,22] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagService.java:[57,12] cannot find symbol
+[ERROR]   symbol:   method setLabel(java.lang.String)
+[ERROR]   location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagService.java:[58,12] cannot find symbol
+[ERROR]   symbol:   method setXCoordinate(java.lang.Double)
+[ERROR]   location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagService.java:[59,12] cannot find symbol
+[ERROR]   symbol:   method setYCoordinate(java.lang.Double)
+[ERROR]   location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagService.java:[60,38] cannot find symbol
+[ERROR]   symbol:   method setFontSize(java.lang.Integer)
+[ERROR]   location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagService.java:[61,39] cannot find symbol
+[ERROR]   symbol:   method setFontColor(java.lang.String)
+[ERROR]   location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagService.java:[62,45] cannot find symbol
+[ERROR]   symbol:   method setBackgroundColor(java.lang.String)
+[ERROR]   location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[18,15] cannot find symbol
+[ERROR]   symbol:   class TagDtoBuilder
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.TagDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[18,46] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.TagDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[19,24] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[20,27] cannot find symbol
+[ERROR]   symbol:   method getLabel()
+[ERROR]   location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[21,33] cannot find symbol
+[ERROR]   symbol:   method getXCoordinate()
+[ERROR]   location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[22,33] cannot find symbol
+[ERROR]   symbol:   method getYCoordinate()
+[ERROR]   location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[23,30] cannot find symbol
+[ERROR]   symbol:   method getFontSize()
+[ERROR]   location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[24,31] cannot find symbol
+[ERROR]   symbol:   method getFontColor()
+[ERROR]   location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagConverter.java:[25,37] cannot find symbol
+[ERROR]   symbol:   method getBackgroundColor()
+[ERROR]   location: variable tag of type com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/FileUploadError.java:[10,8] com.spotlight.back.spotlight.exceptions.errors.FileUploadError is not abstract and does not override abstract method getDescription() in com.spotlight.back.spotlight.exceptions.errors.ErrorCode
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/FileUploadError.java:[12,18] constructor FileUploadError in enum com.spotlight.back.spotlight.exceptions.errors.FileUploadError cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/FileUploadError.java:[13,15] constructor FileUploadError in enum com.spotlight.back.spotlight.exceptions.errors.FileUploadError cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/FileUploadError.java:[14,14] constructor FileUploadError in enum com.spotlight.back.spotlight.exceptions.errors.FileUploadError cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[35,43] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[36,40] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.entities.Tag
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[37,30] cannot find symbol
+[ERROR]   symbol:   method getLabel()
+[ERROR]   location: variable tagDto of type com.spotlight.back.spotlight.models.dtos.TagCreationDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[38,34] cannot find symbol
+[ERROR]   symbol:   method getFontColor()
+[ERROR]   location: variable tagDto of type com.spotlight.back.spotlight.models.dtos.TagCreationDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[39,40] cannot find symbol
+[ERROR]   symbol:   method getBackgroundColor()
+[ERROR]   location: variable tagDto of type com.spotlight.back.spotlight.models.dtos.TagCreationDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[40,36] cannot find symbol
+[ERROR]   symbol:   method getXCoordinate()
+[ERROR]   location: variable tagDto of type com.spotlight.back.spotlight.models.dtos.TagCreationDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[41,36] cannot find symbol
+[ERROR]   symbol:   method getYCoordinate()
+[ERROR]   location: variable tagDto of type com.spotlight.back.spotlight.models.dtos.TagCreationDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[43,55] cannot find symbol
+[ERROR]   symbol:   method getProjectId()
+[ERROR]   location: variable tagDto of type com.spotlight.back.spotlight.models.dtos.TagCreationDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[43,150] cannot find symbol
+[ERROR]   symbol:   method getProjectId()
+[ERROR]   location: variable tagDto of type com.spotlight.back.spotlight.models.dtos.TagCreationDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[56,38] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.TagDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[57,31] cannot find symbol
+[ERROR]   symbol:   method getTag()
+[ERROR]   location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[58,34] cannot find symbol
+[ERROR]   symbol:   method getTag()
+[ERROR]   location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[59,38] cannot find symbol
+[ERROR]   symbol:   method getTag()
+[ERROR]   location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[60,44] cannot find symbol
+[ERROR]   symbol:   method getTag()
+[ERROR]   location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[61,40] cannot find symbol
+[ERROR]   symbol:   method getTag()
+[ERROR]   location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[62,40] cannot find symbol
+[ERROR]   symbol:   method getTag()
+[ERROR]   location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TagProjectService.java:[64,20] incompatible types: java.util.List<java.lang.Object> cannot be converted to java.util.List<com.spotlight.back.spotlight.models.dtos.TagDto>
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagInProjectConverter.java:[16,22] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.TagDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagInProjectConverter.java:[17,31] cannot find symbol
+[ERROR]   symbol:   method getTag()
+[ERROR]   location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TagInProjectConverter.java:[18,34] cannot find symbol
+[ERROR]   symbol:   method getTag()
+[ERROR]   location: variable tagProject of type com.spotlight.back.spotlight.models.entities.TagProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/UserService.java:[33,25] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/UserService.java:[47,13] cannot find symbol
+[ERROR]   symbol:   method setProfilePictureUrl(java.lang.String)
+[ERROR]   location: variable user of type com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/UserService.java:[54,60] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable u of type com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserConverter.java:[27,24] cannot find symbol
+[ERROR]   symbol:   class UserResponceDtoBuilder
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.UserResponceDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserConverter.java:[27,73] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.UserResponceDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserConverter.java:[28,25] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserConverter.java:[29,27] cannot find symbol
+[ERROR]   symbol:   method getName()
+[ERROR]   location: variable user of type com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserConverter.java:[30,40] cannot find symbol
+[ERROR]   symbol:   method getProfilePictureUrl()
+[ERROR]   location: variable user of type com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserConverter.java:[32,17] cannot find symbol
+[ERROR]   symbol:   method getUserTeams()
+[ERROR]   location: variable user of type com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserConverter.java:[33,49] cannot find symbol
+[ERROR]   symbol:   method getUserTeams()
+[ERROR]   location: variable user of type com.spotlight.back.spotlight.models.entities.User
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamsOfUserConverter.java:[21,30] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.TeamForUserDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamsOfUserConverter.java:[22,29] cannot find symbol
+[ERROR]   symbol:   method getTeam()
+[ERROR]   location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamsOfUserConverter.java:[23,31] cannot find symbol
+[ERROR]   symbol:   method getTeam()
+[ERROR]   location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamsOfUserConverter.java:[24,38] cannot find symbol
+[ERROR]   symbol:   method getTeam()
+[ERROR]   location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamsOfUserConverter.java:[25,44] cannot find symbol
+[ERROR]   symbol:   method getTeam()
+[ERROR]   location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamsOfUserConverter.java:[26,31] cannot find symbol
+[ERROR]   symbol:   method getRole()
+[ERROR]   location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamsOfUserConverter.java:[27,35] cannot find symbol
+[ERROR]   symbol:   method getTeam()
+[ERROR]   location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamProjectConverter.java:[16,32] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.ProjectInTeamDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamProjectConverter.java:[17,32] cannot find symbol
+[ERROR]   symbol:   method getProject()
+[ERROR]   location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamProjectConverter.java:[18,34] cannot find symbol
+[ERROR]   symbol:   method getProject()
+[ERROR]   location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamProjectConverter.java:[19,41] cannot find symbol
+[ERROR]   symbol:   method getProject()
+[ERROR]   location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[18,27] cannot find symbol
+[ERROR]   symbol:   class ProjectResponceDtoBuilder
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.ProjectResponceDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[18,82] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.ProjectResponceDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[19,28] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable project of type com.spotlight.back.spotlight.models.entities.Project
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[20,30] cannot find symbol
+[ERROR]   symbol:   method getName()
+[ERROR]   location: variable project of type com.spotlight.back.spotlight.models.entities.Project
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[21,37] cannot find symbol
+[ERROR]   symbol:   method getDescription()
+[ERROR]   location: variable project of type com.spotlight.back.spotlight.models.entities.Project
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[22,41] cannot find symbol
+[ERROR]   symbol:   method getSourceVideoPath()
+[ERROR]   location: variable project of type com.spotlight.back.spotlight.models.entities.Project
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[23,40] cannot find symbol
+[ERROR]   symbol:   method getSourceDataPath()
+[ERROR]   location: variable project of type com.spotlight.back.spotlight.models.entities.Project
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectConverter.java:[24,44] cannot find symbol
+[ERROR]   symbol:   method getProcessedVideoPath()
+[ERROR]   location: variable project of type com.spotlight.back.spotlight.models.entities.Project
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/ProjectError.java:[9,8] com.spotlight.back.spotlight.exceptions.errors.ProjectError is not abstract and does not override abstract method getDescription() in com.spotlight.back.spotlight.exceptions.errors.ErrorCode
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/ProjectError.java:[10,22] constructor ProjectError in enum com.spotlight.back.spotlight.exceptions.errors.ProjectError cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/TeamError.java:[10,8] com.spotlight.back.spotlight.exceptions.errors.TeamError is not abstract and does not override abstract method getDescription() in com.spotlight.back.spotlight.exceptions.errors.ErrorCode
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/exceptions/errors/TeamError.java:[11,19] constructor TeamError in enum com.spotlight.back.spotlight.exceptions.errors.TeamError cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserInTeamConverter.java:[16,29] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.UserInTeamDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserInTeamConverter.java:[17,29] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserInTeamConverter.java:[18,31] cannot find symbol
+[ERROR]   symbol:   method getUser()
+[ERROR]   location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserInTeamConverter.java:[19,44] cannot find symbol
+[ERROR]   symbol:   method getUser()
+[ERROR]   location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/UserInTeamConverter.java:[20,31] cannot find symbol
+[ERROR]   symbol:   method getRole()
+[ERROR]   location: variable userTeam of type com.spotlight.back.spotlight.models.entities.UserTeam
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TeamService.java:[31,25] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TeamService.java:[53,13] cannot find symbol
+[ERROR]   symbol:   method setName(java.lang.String)
+[ERROR]   location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TeamService.java:[54,13] cannot find symbol
+[ERROR]   symbol:   method setDescription(java.lang.String)
+[ERROR]   location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[26,24] cannot find symbol
+[ERROR]   symbol:   class TeamResponceDtoBuilder
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.TeamResponceDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[26,73] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.TeamResponceDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[27,25] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[28,27] cannot find symbol
+[ERROR]   symbol:   method getName()
+[ERROR]   location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[29,34] cannot find symbol
+[ERROR]   symbol:   method getDescription()
+[ERROR]   location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[31,17] cannot find symbol
+[ERROR]   symbol:   method getProfilePictureUrl()
+[ERROR]   location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[32,43] cannot find symbol
+[ERROR]   symbol:   method getProfilePictureUrl()
+[ERROR]   location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[34,17] cannot find symbol
+[ERROR]   symbol:   method getUsers()
+[ERROR]   location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[35,31] cannot find symbol
+[ERROR]   symbol:   method getUsers()
+[ERROR]   location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[37,17] cannot find symbol
+[ERROR]   symbol:   method getProjects()
+[ERROR]   location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/TeamConverter.java:[38,34] cannot find symbol
+[ERROR]   symbol:   method getProjects()
+[ERROR]   location: variable team of type com.spotlight.back.spotlight.models.entities.Team
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectInTeamConverter.java:[20,25] cannot find symbol
+[ERROR]   symbol:   class ProjectInTeamDtoBuilder
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.ProjectInTeamDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectInTeamConverter.java:[20,76] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.spotlight.back.spotlight.models.dtos.ProjectInTeamDto
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectInTeamConverter.java:[21,32] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectInTeamConverter.java:[22,34] cannot find symbol
+[ERROR]   symbol:   method getProject()
+[ERROR]   location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/models/converters/ProjectInTeamConverter.java:[23,41] cannot find symbol
+[ERROR]   symbol:   method getProject()
+[ERROR]   location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TeamProjectService.java:[34,56] cannot find symbol
+[ERROR]   symbol:   method getTeam()
+[ERROR]   location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TeamProjectService.java:[35,65] cannot find symbol
+[ERROR]   symbol:   method getProject()
+[ERROR]   location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] /E:/dev/spotlight/src/main/java/com/spotlight/back/spotlight/services/TeamProjectService.java:[36,20] cannot find symbol
+[ERROR]   symbol:   method setTeam(com.spotlight.back.spotlight.models.entities.Team)
+[ERROR]   location: variable teamProject of type com.spotlight.back.spotlight.models.entities.TeamProject
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

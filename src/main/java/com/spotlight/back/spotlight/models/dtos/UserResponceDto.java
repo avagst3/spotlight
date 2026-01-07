@@ -21,5 +21,6 @@ public class UserResponceDto {
     @NotEmpty
     public String name;
     public String profilePictureUrl;
+    public String token;
     public List<TeamForUserDto> teams;
 }

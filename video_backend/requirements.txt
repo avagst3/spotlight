@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+pandas
+numpy
+opencv-python-headless
+openpyxl
+pydantic

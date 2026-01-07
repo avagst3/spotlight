@@ -29,7 +29,7 @@ public class Team extends AuditDateEntity {
     @OneToMany(mappedBy = "team",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<UserTeam> users;
 
-    @OneToMany(mappedBy = "projects",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "team",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<TeamProject> projects;
     
     private String profilePictureUrl;

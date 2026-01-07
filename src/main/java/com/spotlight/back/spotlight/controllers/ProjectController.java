@@ -1,5 +1,6 @@
 package com.spotlight.back.spotlight.controllers;
 
+import com.spotlight.back.spotlight.models.dtos.ProcessRequest;
 import com.spotlight.back.spotlight.models.dtos.ProjectCreationDto;
 import com.spotlight.back.spotlight.models.dtos.ProjectDto;
 import com.spotlight.back.spotlight.models.dtos.ProjectInTeamDto;
@@ -104,8 +105,33 @@ public class ProjectController {
         ProjectResponceDto projectDto = projectService.updateProjectData(id, file);
         return projectDto != null ? ResponseEntity.ok(projectDto) : ResponseEntity.notFound().build();
     }
-    
+
     @PreAuthorize("hasAnyRole('ADMIN','OWNER','MEMBER')")
+    @Operation(summary = "Start processing for a project")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Processing started successfully"),
+        @ApiResponse(responseCode = "404", description = "Project not found"),
+        @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    @PostMapping("/{id}/process")
+    public ResponseEntity<String> startProcessing(@PathVariable UUID id, @RequestBody ProcessRequest options) {
+        String taskId = projectService.startProjectProcessing(id, options);
+        return ResponseEntity.ok(taskId);
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN','OWNER','MEMBER')")
+    @Operation(summary = "Get project task status")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Status retrieved successfully"),
+        @ApiResponse(responseCode = "404", description = "Project not found"),
+        @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    @GetMapping("/{id}/status")
+    public ResponseEntity<Object> getTaskStatus(@PathVariable UUID id) {
+        return ResponseEntity.ok(projectService.getProjectTaskStatus(id));
+    }
+    
+    
     @Operation(summary = "Delete a project by ID")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "204", description = "Project deleted successfully",content = @Content(schema = @Schema(implementation = ProjectResponceDto.class))),

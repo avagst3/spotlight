@@ -44,7 +44,7 @@ public class TagController {
         @ApiResponse(responseCode = "200", description = "Tags retrieved successfully",content = @Content(schema = @Schema(implementation = TagDto.class))),
         @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<TagDto>> getAllTags() {
         List<TagDto> tags = tagService.getAllTags();
         return ResponseEntity.ok(tags);
@@ -56,7 +56,7 @@ public class TagController {
         @ApiResponse(responseCode = "404", description = "Tag not found"),
         @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<TagDto> getTag(@PathVariable UUID id) {
         TagDto tagDto = tagService.getTagById(id);
         return tagDto != null ? ResponseEntity.ok(tagDto) : ResponseEntity.notFound().build();
@@ -68,7 +68,7 @@ public class TagController {
         @ApiResponse(responseCode = "404", description = "Tag not found"),
         @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<TagDto> updateTag(@PathVariable UUID id, @RequestBody TagDto dto) {
         TagDto tagDto = tagService.updateTag(id, dto);
         return tagDto != null ? ResponseEntity.ok(tagDto) : ResponseEntity.notFound().build();
@@ -80,7 +80,7 @@ public class TagController {
         @ApiResponse(responseCode = "404", description = "Tag not found"),
         @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteTag(@PathVariable UUID id) {
         boolean deleted = tagService.deleteTag(id);
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();

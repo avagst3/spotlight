@@ -6,7 +6,8 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.spotlight.back.spotlight.exceptions.NotFoundException;
-import com.spotlight.back.spotlight.exceptions.errors.UserErrorCode;
+import com.spotlight.back.spotlight.exceptions.errors.TeamError;
+import com.spotlight.back.spotlight.exceptions.errors.UserErrorCode; 
 import com.spotlight.back.spotlight.models.dtos.TeamCreatedByUserDto;
 import com.spotlight.back.spotlight.models.dtos.TeamForUserDto;
 import com.spotlight.back.spotlight.models.dtos.TeamResponceDto;
@@ -34,11 +35,21 @@ public class UserTeamService {
 
     @Transactional
     public UserTeam createUserTeam(UserTeamDto dto) {
-        if (userTeamRepository.findByUserIdAndTeamId(dto.getUserId(), dto.getTeamId()).isPresent()) {
+        User user = null;
+        if (dto.getUserId() != null) {
+            user = userRepository.findById(dto.getUserId()).orElseThrow(() -> new NotFoundException(UserErrorCode.NOT_FOUND, dto.getUserId())); // Changed UserError.USER_NOT_FOUND to UserErrorCode.NOT_FOUND
+        } else if (dto.getUsername() != null && !dto.getUsername().isEmpty()) {
+            user = userRepository.findByUsername(dto.getUsername()).orElseThrow(() -> new RuntimeException("User not found with username: " + dto.getUsername()));
+        } else {
+             throw new RuntimeException("UserId or Username must be provided");
+        }
+        
+        Team team = teamRepository.findById(dto.getTeamId()).orElseThrow(() -> new NotFoundException(TeamError.TEAM_NOT_FOUND, dto.getTeamId()));
+
+        if (userTeamRepository.findByUserIdAndTeamId(user.getId(), team.getId()).isPresent()) {
             throw new RuntimeException("User already in team");
         }
-        User user = userRepository.findById(dto.getUserId()).orElseThrow(() -> new RuntimeException("User not found"));
-        Team team = teamRepository.findById(dto.getTeamId()).orElseThrow(() -> new RuntimeException("Team not found"));
+
         UserTeam userTeam = UserTeam.builder()
                 .user(user)
                 .team(team)

@@ -18,7 +18,7 @@ public class ProjectInTeamConverter implements Converter<TeamProject,ProjectInTe
         if (teamProject == null) return null;
 
         ProjectInTeamDto.ProjectInTeamDtoBuilder builder = ProjectInTeamDto.builder()
-                .id(teamProject.getId())
+                .id(teamProject.getProject().getId())
                 .name(teamProject.getProject().getName())
                 .description(teamProject.getProject().getDescription());
 

@@ -23,5 +23,6 @@ public class ProjectResponceDto {
     public String sourceVideoPath;
     public String sourceDataPath;
     public String processedVideoPath;
+    public String currentTaskId;
     public List<TagDto> tags;
 }

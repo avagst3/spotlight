@@ -1,18 +1,21 @@
 package com.spotlight.back.spotlight.models.dtos;
 
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRegisterDto {
-    @NotEmpty
-    public String username;
-    @NotEmpty
-    public String password;
+public class AuthenticationResponse {
+
+    private UUID userId;
+    private String username;
+    private String token;
+    private Integer expiresIn;
+
 }

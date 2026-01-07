@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserTeamDto {
     @NotNull
-    public UUID userId;
-    @NotNull
     public UUID teamId;
+    public UUID userId;
+    public String username;
     @NotNull
     public UserTeam.UserRole role;
 }

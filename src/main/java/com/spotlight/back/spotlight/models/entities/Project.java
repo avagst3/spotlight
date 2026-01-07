@@ -40,4 +40,7 @@ public class Project extends AuditDateEntity {
     @OneToMany(mappedBy = "project",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<TagProject> tags;
 
+    @Column(name = "current_task_id")
+    private String currentTaskId;
+
 }
