@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories("com.spotlight.back.spotlight.repositories")
 @EnableJpaAuditing(dateTimeProviderRef = "auditingDateTimeProvider")
 @EnableTransactionManagement
-public class PersitenceCOnfiguration {
+public class PersitenceConfiguration {
 
     @Bean(name = "auditingDateTimeProvider")
     public DateTimeProvider dateTimeProvider() {

@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,7 +23,7 @@ public class Project extends AuditDateEntity {
     @Column(name = "name", nullable = false)
     private String name;
     
-    @Column(name = "description",columnDefinition = "TEXT", nullable = false)
+    @Column(name = "description", columnDefinition = "TEXT", nullable = false)
     private String description;
     
     @Column(name = "source_video_path")
@@ -34,13 +35,15 @@ public class Project extends AuditDateEntity {
     @Column(name = "processed_video_path")
     private String processedVideoPath;
     
-    @OneToMany(mappedBy = "project",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TeamProject> teams;
 
-    @OneToMany(mappedBy = "project",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TagProject> tags;
 
     @Column(name = "current_task_id")
     private String currentTaskId;
 
+    @Column(name = "status")
+    private String status; 
 }

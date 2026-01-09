@@ -10,7 +10,6 @@ services:
       - '5432:5432'
     volumes:
       - 'spotlight-db-data:/var/lib/postgresql/data'
-    # FIX A: Add the DB to the custom network
     networks:
       - spotlight-network
     healthcheck:
@@ -19,26 +18,26 @@ services:
       retries: 5
 
   spotlight-front:
-    build: ../spotlight_front
+    build: https://github.com/avagst3/spotlight_front.git#master
     ports:
       - '5173:5173'
     volumes:
-      - ../spotlight_front:/app
-      - /app/node_modules
       - shared-upload:/app/public/uploads:ro
     networks:
       - spotlight-network
     environment:
       - VITE_API_URL=http://localhost:8080
+    depends_on:
+      - app-java
+
   app-java:
     build: .
     ports:
       - '8080:8080'
     environment:
-      
       - JWT_ISSUER=spotlight
       - JWT_ALGORITHM=EC
-      - JWT_VALIDITY=3600000
+      - JWT_VALIDITY=3600000 
       - JWT_PRIVATE_KEY=MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgn4xc890lO65nupUgy4miHN1I6AvjtskAtcNchmRGssOhRANCAARYQs3T7R6/uG8/vCQGoeR3yTKIm9S4E2mTgjNgBbBcWU+1d8XlHo290ALWMsmbXkNFfz8kBfjDj4XRewXnp1PB
       - JWT_PUBLIC_KEY=MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEWELN0+0ev7hvP7wkBqHkd8kyiJvUuBNpk4IzYAWwXFlPtXfF5R6NvdAC1jLJm15DRX8/JAX4w4+F0XsF56dTwQ==
       - 'SPRING_DATASOURCE_URL=jdbc:postgresql://spotlight:5432/spotlightdb'

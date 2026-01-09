@@ -5,6 +5,7 @@ import com.spotlight.back.spotlight.authentications.JwtAuthenticationFilter;
 import com.spotlight.back.spotlight.managers.JwtManager;
 import com.spotlight.back.spotlight.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AnonymousAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
@@ -28,6 +30,10 @@ public class WebSecurityConfiguration implements WebMvcConfigurer {
     private final ObjectMapper objectMapper;
     private final JwtManager jwtManager;
     private final UserRepository userRepository;
+
+    // Récupération du chemin du volume partagé défini dans docker-compose
+    @Value("${FILE_STORAGE_PATH:/shared/data}")
+    private String storagePath;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -50,14 +56,14 @@ public class WebSecurityConfiguration implements WebMvcConfigurer {
                         .requestMatchers(HttpMethod.GET, "/h2-console").permitAll()
                         .requestMatchers(HttpMethod.GET, "/v3/api-docs/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
+                        // Autorise l'accès public aux fichiers pour que le Front puisse lire les vidéos
+                        .requestMatchers("/uploads/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(objectMapper, userRepository, jwtManager), AnonymousAuthenticationFilter.class);
 
         return http.build();
     }
-
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -68,8 +74,10 @@ public class WebSecurityConfiguration implements WebMvcConfigurer {
     }
 
     @Override
-    public void addResourceHandlers(org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry registry) {
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // Cette configuration permet à Spring de mapper l'URL "/uploads/ma_video.mp4"
+        // vers le fichier physique "/shared/data/ma_video.mp4"
         registry.addResourceHandler("/uploads/**")
-                .addResourceLocations("file:./uploads/");
+                .addResourceLocations("file:" + storagePath + "/");
     }
 }

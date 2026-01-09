@@ -7,24 +7,27 @@ import com.spotlight.back.spotlight.models.dtos.ProjectResponceDto;
 import com.spotlight.back.spotlight.models.entities.Project;
 import com.spotlight.back.spotlight.repositories.ProjectRepository;
 import com.spotlight.back.spotlight.models.dtos.PythonProcessRequest;
+import com.spotlight.back.spotlight.exceptions.NotFoundException;
+import com.spotlight.back.spotlight.exceptions.errors.ProjectError;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ProjectService implements org.springframework.beans.factory.InitializingBean {
+public class ProjectService implements InitializingBean {
     
     private final ProjectRepository projectRepository;
     private final ProjectConverter projectConverter;
@@ -36,28 +39,28 @@ public class ProjectService implements org.springframework.beans.factory.Initial
     @Value("${PYTHON_API_URL}")
     private String pythonApiUrl;
 
-    private org.springframework.web.reactive.function.client.WebClient webClient;
+    private WebClient webClient;
 
     @Override
-    public void afterPropertiesSet() throws Exception {
-        this.webClient = org.springframework.web.reactive.function.client.WebClient.builder()
+    public void afterPropertiesSet() {
+        this.webClient = WebClient.builder()
                 .baseUrl(pythonApiUrl)
                 .build();
     }
 
-    
     @Transactional
     public ProjectResponceDto createProject(ProjectDto dto) {
         Project project = Project.builder()
                 .name(dto.name)
                 .description(dto.description)
+                .status("PENDING")
                 .build();
         return projectConverter.convert(projectRepository.save(project));
     }
     
     @Transactional(readOnly = true)
     public List<ProjectResponceDto> getAllProjects() {
-        return  projectRepository.findAll().stream()
+        return projectRepository.findAll().stream()
             .map(projectConverter::convert)
             .toList();
     }
@@ -66,70 +69,57 @@ public class ProjectService implements org.springframework.beans.factory.Initial
     public ProjectResponceDto getProjectById(UUID id) {
         return projectRepository.findById(id)
             .map(projectConverter::convert)
-            .orElse(null);
+            .orElseThrow(() -> new NotFoundException(ProjectError.PROJECT_NOT_FOUND));
     }
     
     @Transactional
     public ProjectResponceDto updateProject(UUID id, ProjectDto dto) {
-        return projectRepository.findById(id)
-            .map(project -> {
-                project.setName(dto.name);
-                project.setDescription(dto.description);
-                return projectConverter.convert(projectRepository.save(project));
-            })
-            .orElse(null);
+        Project project = projectRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(ProjectError.PROJECT_NOT_FOUND));
+        project.setName(dto.name);
+        project.setDescription(dto.description);
+        return projectConverter.convert(projectRepository.save(project));
     }
     
     @Transactional
     public ProjectResponceDto updateProjectVideo(UUID id, MultipartFile file) {
-        Project project = projectRepository.findById(id).orElse(null);
-        if (project == null) {
-            return null;
-        }
+        Project project = projectRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(ProjectError.PROJECT_NOT_FOUND));
         
-        String path = fileUploadService.uploadFile(file,"project/raw");
-        
+        String path = fileUploadService.uploadFile(file, "project/raw");
         project.setSourceVideoPath(path);
         
-        try {
-            String absolutePath = basePath + "/" + path;
-            
-            // Asynchronous call (Fire-and-forget)
-            webClient.post()
-                    .uri(uriBuilder -> uriBuilder.path("/video/raw")
-                            .queryParam("video_name", absolutePath)
-                            .build())
-                    .retrieve()
-                    .bodyToMono(java.util.Map.class)
-                    .map(response -> (String) response.get("task_id"))
-                    .subscribe(taskId -> {
-                        log.info("Started raw conversion task: {}", taskId);
-                        // Update project in a new transaction/context
-                        // Note: We need to re-fetch to ensure we have the latest state and don't overwrite concurrent changes
-                        projectRepository.findById(id).ifPresent(p -> {
-                            p.setCurrentTaskId(taskId);
-                            projectRepository.save(p);
-                        });
-                    }, error -> {
-                        log.error("Failed to trigger video conversion async", error);
-                    });
+        if (!path.toLowerCase().endsWith(".mp4")) {
+            try {
+                String absolutePath = basePath + "/" + path;
+                webClient.post()
+                        .uri(uriBuilder -> uriBuilder.path("/video/raw")
+                                .queryParam("video_name", absolutePath)
+                                .build())
+                        .retrieve()
+                        .bodyToMono(Map.class)
+                        .subscribe(response -> {
+                            String taskId = (String) response.get("task_id");
+                            updateProjectTaskInNewTransaction(id, taskId, "CONVERTING");
+                        }, error -> log.error("Erreur Python /video/raw", error));
 
-        } catch (Exception e) {
-            log.error("Failed to trigger video conversion", e);
+                project.setStatus("CONVERTING");
+            } catch (Exception e) {
+                log.error("Échec appel conversion", e);
+            }
+        } else {
+            project.setProcessedVideoPath(path);
+            project.setStatus("READY");
         }
-
         return projectConverter.convert(projectRepository.save(project));
     }
 
     @Transactional
     public ProjectResponceDto updateProjectData(UUID id, MultipartFile file) {
-        Project project = projectRepository.findById(id).orElse(null);
-        if (project == null) {
-            return null;
-        }
+        Project project = projectRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(ProjectError.PROJECT_NOT_FOUND));
         
-        String path = fileUploadService.uploadFile(file,"project/data");
-        
+        String path = fileUploadService.uploadFile(file, "project/data");
         project.setSourceDataPath(path);
         
         return projectConverter.convert(projectRepository.save(project));
@@ -144,98 +134,67 @@ public class ProjectService implements org.springframework.beans.factory.Initial
         return false;
     }
 
+    private void updateProjectTaskInNewTransaction(UUID id, String taskId, String status) {
+        projectRepository.findById(id).ifPresent(p -> {
+            p.setCurrentTaskId(taskId);
+            p.setStatus(status);
+            projectRepository.save(p);
+        });
+    }
+
     @Transactional
-public String startProjectProcessing(UUID id, ProcessRequest options) {
-    // 1. Fetch Project Files from DB
-    Project project = projectRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("Project not found"));
-    
-    if (project.getSourceVideoPath() == null || project.getSourceDataPath() == null) {
-        throw new RuntimeException("Missing source files");
-    }
-
-    // Use original video path - OpenCV can read most formats directly
-    // If conversion to MP4 completed, it will be at the same path with .mp4 extension
-    String sourceVideoPath = project.getSourceVideoPath();
-    
-    // Check if MP4 version exists (from raw conversion), otherwise use original
-    String mp4VideoPath = sourceVideoPath.replaceAll("\\.[^.]+$", ".mp4");
-    String videoPath;
-    
-    // In Docker, we can't check file existence from Java, so try original path first
-    // The Python endpoint will handle file validation
-    if (sourceVideoPath.toLowerCase().endsWith(".mp4")) {
-        videoPath = basePath + "/" + sourceVideoPath;
-    } else {
-        // Try the converted MP4 version first, Python will validate
-        videoPath = basePath + "/" + mp4VideoPath;
-    }
-    
-    String dataPath = basePath + "/" + project.getSourceDataPath();
-    String outputVideoPath = basePath + "/" + "project/video/" + id + "_processed.mp4";
-    
-    log.info("Processing video: {}", videoPath);
-    log.info("Data file: {}", dataPath);
-    log.info("Output: {}", outputVideoPath);
-
-    
-    PythonProcessRequest pythonRequest = new PythonProcessRequest();
-    
-
-    pythonRequest.setVideoInput(videoPath);
-    pythonRequest.setDataInput(dataPath);
-    pythonRequest.setVideoOutput(outputVideoPath);
-
-    if (options != null) {
+    public String startProjectProcessing(UUID id, ProcessRequest options) {
+        Project project = projectRepository.findById(id).orElseThrow();
+        
+        String sourceVideoPath = project.getSourceVideoPath();
+        String videoInput = basePath + "/" + (sourceVideoPath.endsWith(".mp4") ? sourceVideoPath : sourceVideoPath.replaceAll("\\.[^.]+$", ".mp4"));
+        String dataInput = basePath + "/" + project.getSourceDataPath();
+        String relativeOutputPath = "project/video/" + id + "_processed.mp4";
+        
+        PythonProcessRequest pythonRequest = new PythonProcessRequest();
+        pythonRequest.setVideoInput(videoInput);
+        pythonRequest.setDataInput(dataInput);
+        pythonRequest.setVideoOutput(basePath + "/" + relativeOutputPath);
+        
+        // Correction de type pour la Map de configuration
         pythonRequest.setConfigColonnes(options.getConfigColonnes());
         
-        pythonRequest.setDecalageTemps(
-            options.getDecalageTemps() != null ? options.getDecalageTemps() : 0.0
-        );
-        pythonRequest.setFreqRefresh(
-            options.getFreqRefresh() != null ? options.getFreqRefresh() : 0.1
-        );
-    }
+        pythonRequest.setDecalageTemps(options.getDecalageTemps() != null ? options.getDecalageTemps() : 0.0);
+        pythonRequest.setFreqRefresh(options.getFreqRefresh() != null ? options.getFreqRefresh() : 0.1);
 
-    // 3. Call Python API
-    try {
-        String taskId = webClient.post()
-                .uri("/video/process")
-                .bodyValue(pythonRequest) // Sends the merged object
-                .retrieve()
-                .bodyToMono(java.util.Map.class)
-                .map(response -> (String) response.get("task_id"))
-                .block();
-        
-        // 4. Update DB status
-        project.setCurrentTaskId(taskId);
-        project.setProcessedVideoPath("project/video/" + id + "_processed.mp4");
-        projectRepository.save(project);
-        
-        return taskId;
-    } catch (Exception e) {
-        log.error("Failed to start processing", e);
-        throw new RuntimeException("Failed to start processing: " + e.getMessage());
+        try {
+            Map response = webClient.post().uri("/video/process").bodyValue(pythonRequest).retrieve().bodyToMono(Map.class).block();
+            String taskId = (String) response.get("task_id");
+            project.setCurrentTaskId(taskId);
+            project.setStatus("PROCESSING");
+            project.setProcessedVideoPath(relativeOutputPath);
+            projectRepository.save(project);
+            return taskId;
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur Python: " + e.getMessage());
+        }
     }
-}
 
     public Object getProjectTaskStatus(UUID id) {
-        Project project = projectRepository.findById(id).orElseThrow(() -> new RuntimeException("Project not found"));
-        
-        if (project.getCurrentTaskId() == null) {
-            return java.util.Map.of("status", "none");
-        }
+        Project project = projectRepository.findById(id).orElseThrow();
+        if (project.getCurrentTaskId() == null) return Map.of("status", "none");
         
         try {
-            return webClient.get()
+            Map<String, Object> pythonResponse = (Map<String, Object>) webClient.get()
                     .uri("/video/status/" + project.getCurrentTaskId())
-                    .retrieve()
-                    .bodyToMono(Object.class)
-                    .block();
+                    .retrieve().bodyToMono(Map.class).block();
+
+            if ("completed".equals(pythonResponse.get("status"))) {
+                project.setStatus("COMPLETED");
+                String absoluteOutput = (String) pythonResponse.get("output");
+                if (absoluteOutput != null) {
+                    project.setProcessedVideoPath(absoluteOutput.replace(basePath + "/", ""));
+                }
+                projectRepository.save(project);
+            }
+            return pythonResponse;
         } catch (Exception e) {
-            return java.util.Map.of("status", "error", "message", e.getMessage());
+            return Map.of("status", "error");
         }
     }
-
-    
 }

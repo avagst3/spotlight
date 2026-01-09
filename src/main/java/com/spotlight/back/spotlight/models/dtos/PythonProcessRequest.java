@@ -1,16 +1,10 @@
 package com.spotlight.back.spotlight.models.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class PythonProcessRequest {
     @JsonProperty("video_input")
     private String videoInput;
@@ -25,8 +19,8 @@ public class PythonProcessRequest {
     private Map<String, ColumnConfig> configColonnes;
 
     @JsonProperty("decalage_temps")
-    private double decalageTemps;
+    private Double decalageTemps;
 
     @JsonProperty("freq_refresh")
-    private double freqRefresh;
+    private Double freqRefresh;
 }
